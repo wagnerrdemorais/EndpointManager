@@ -30,7 +30,7 @@ namespace EndpointManager.Domain.Service
         {
             ThrowExceptionIfEndpointExists(serialNumber);
 
-            int existingModelID = ModelRepository.GetDefaultModelIdBySerialNumber(serialNumber);
+            int existingModelID = GetDefaultModel(serialNumber);
             Endpoint newEndpoint = new Endpoint(serialNumber, existingModelID != 0 ? existingModelID : modelId, meterNumber, meterFirmwareVersion, switchState);
             return EndpointRepository.SaveEndpoint(newEndpoint);
         }
@@ -48,6 +48,11 @@ namespace EndpointManager.Domain.Service
             bool deleted = EndpointRepository.DeleteEndpointBySerialNumber(serialNumber);
             if (!deleted)
                 throw new Exception($"Could not remove endpoint with serial number: {serialNumber}!");
+        }
+
+        public int GetDefaultModel(string serialNumber)
+        {
+            return ModelRepository.GetDefaultModelIdBySerialNumber(serialNumber);
         }
 
         private Endpoint GetEndpointOrThrow(string serialNumber)

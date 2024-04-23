@@ -9,5 +9,6 @@ namespace EndpointManager.Domain.Service
         Endpoint EditEndpoint(string serialNumber, int switchState);
         Endpoint FindEndpoint(string serialNumber);
         List<Endpoint> ListEndpoints();
+        int GetDefaultModel(string serialNumber);
     }
 }
