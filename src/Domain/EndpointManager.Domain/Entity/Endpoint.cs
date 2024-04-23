@@ -1,11 +1,12 @@
 ﻿
 using EndpointManager.Domain.Exceptions;
+using EndpointManager.Domain.SeedWork;
 using EndpointManager.Domain.Validation;
 using System.Text;
 
 namespace EndpointManager.Domain.Entity;
 
-public class Endpoint
+public class Endpoint : BaseEntity
 {
     public string SerialNumber { get; private set; }
     public int ModelId { get; private set; }
